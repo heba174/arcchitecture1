@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة / حذف </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>إدارة الطـلاب</h2>
+    <form method="POST" class="add-student-form">
+        <label for="username" class="form-label">اسم المستخدم:</label>
+        <input type="text" id="username" name="username" class="form-input" required><br><br>
+
+        <label for="password" class="form-label">رقم القيد:</label>
+        <input type="password" id="password" name="password" class="form-input" required><br><br>
+        <div class="form-group">
+            <div class="radio-option">
+                <input type="radio" id="add" name="action" value="add" required>
+                <label for="add" class="form-label">إضافة طالب</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" id="delete" name="action" value="delete" required>
+                <label for="delete" class="form-label">حذف طالب</label>
+            </div>
+        </div>
+        
+        
+        <button type="submit" class="submit-btn">تنفيذ</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}" class="back-link">العودة إلى الصفحة الرئيسية</a>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-popup-container">
+            {% for message in messages %}
+                <div class="flash-popup success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة أو حذف مادة</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>إدارة المقرارات</h2>
+    <form action="{{ url_for('add_course') }}" method="post" class="add-course-form">
+        <label for="name" class="form-label">اسم المقرر:</label>
+        <input type="text" id="name" name="name" class="form-input" required><br><br>
+
+        <label for="description" class="form-label">الوصف:</label>
+        <textarea id="description" name="description" class="form-textarea"></textarea><br><br>
+ <div class="form-group">
+        <!-- خيار الإجراء (إضافة أو حذف) -->
+    <div class="radio-option">
+        <input type="radio" id="add" name="action" value="add" required>
+        <label for="add" class="form-label">إضافة مادة</label>
+    </div>
+    <div class="radio-option">
+        <input type="radio" id="delete" name="action" value="delete" required>
+        <label for="delete" class="form-label">حذف مادة</label><br><br>
+    </div>
+ </div>
+        <button type="submit" class="submit-btn">تنفيذ</button>
+    </form>
+
+    <a href="{{ url_for('index') }}" class="back-link">العودة إلى الصفحة الرئيسية</a>
+    
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة مشروع</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <form method="post" action="{{ url_for('add_project', course_id=course_id) }}" enctype="multipart/form-data" class="add-course-form">
+        <input type="hidden" name="username" value="{{ current_user.username }}">
+    
+        <label for="name" class="form-label">اسم المشروع:</label>
+        <input type="text" id="name" name="name" class="form-input" required><br><br>
+    
+        <label for="description" class="form-label">الوصف:</label>
+        <textarea id="description" name="description" class="form-textarea" required></textarea><br><br>
+    
+        <label for="images" class="form-label">رفع الصور:</label>
+        <input type="file" id="images" name="images" multiple class="form-input"><br><br>
+    
+        <button type="submit" class="submit-btn">إضافة المشروع</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="back-link">العودة إلى الصفحة الرئيسية</a>
+    
+</body>
+</html>

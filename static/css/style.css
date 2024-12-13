@@ -1,0 +1,578 @@
+
+body {
+    font-family: 'Arial', sans-serif;  /* تغيير الخط إلى Arial */
+    background-image: linear-gradient(to right, #4e86a4a9, #528aa8b9, #3a6a84cb);  /* تدرج ألوان محايدة يناسب العمارة */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #0e0f0f;  /* لون النص الأساسي */
+    direction: rtl; /* لضبط الاتجاه للغة العربية */
+    
+}
+
+
+/* تنسيق العنوان الرئيسي */
+h1 {
+    color: #0b0b0b;         /* لون النص */
+    font-size: 36px;
+    margin-top: 20px;      /* زيادة الهامش العلوي لتحريك العنوان للأسفل */
+    text-align: center;     /* توسيط النص (إن كان ذلك مطلوباً) */
+}
+/* تنسيق شريط البحث */
+.search-container {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #0f0e0e;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;/
+}
+
+.search-icon { 
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #0f0f0f;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.search-input {
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 45px;
+}
+
+/* تنسيق إظهار مربع البحث */
+.search-input.show {
+    display: inline-block; /* إظهار مربع البحث عند الضغط على الأيقونة */
+}
+
+
+
+/* تنسيق الحاوية التي تحتوي على المواد */
+.courses-list{
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* استخدام Grid لعرض العناصر في صفوف وأعمدة */
+    gap: 20px;  /* المسافة بين المواد */
+    list-style-type: none;  /* إزالة النقاط من القائمة */
+    padding:0;
+    margin-top: 30px;
+    
+}
+
+/* تنسيق كل مادة */
+.course-item {
+    background-color: #dfeef3 ; /* خلفية خفيفة لكل مادة */
+    border-radius: 30px;  /* حواف دائرية */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);  /* إضافة ظل خفيف حول كل مادة */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* إضافة تأثير عند التفاعل */
+    
+}
+.courses-list :hover{
+     transform: translateY(-5px);
+     box-shadow: 0 6px 12px #adb1b4(0, 0, 0, 0.15);
+     color: rgb(14, 13, 13);
+}
+/* تنسيق زر القائمة (ثلاث شرطات) */
+.dropdown-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #0f0f0f;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/* تنسيق محتوى القائمة المنسدلة */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* اظهار القائمة عند النقر على الزر */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* تغيير لون الروابط عند التمرير */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* تنسيق الروابط */
+a {
+    color: #2c3e50;
+    text-decoration: none;  /* إزالة الخط تحت الروابط */
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    
+    
+}
+/* تنسيق رابط تسجيل الدخول وتسجيل الخروج */
+a.auth-link {
+    position: fixed;  /* تثبيت الرابط في مكانه */
+    left: 20px;       /* محاذاة الرابط إلى اليسار */
+    font-size: 16px;
+    color: #0f0f0f;   /* لون النص */
+    text-decoration: none;  /* إزالة الخط تحت الرابط */
+    background-color: #dfeef3; /* خلفية خفيفة */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف حول الرابط */
+    margin-bottom: 10px;  /* مسافة بين الرابط والآخر */
+}
+
+/* تغيير اللون عند التمرير */
+a.auth-link:hover {
+    background-color: #627e92;  /* تغيير الخلفية عند المرور */
+    color: white; /* تغيير اللون إلى الأبيض عند المرور */
+}
+
+/* تخصيص روابط تسجيل الدخول */
+a#login-link {
+    bottom: 20px;  /* وضع الرابط في أسفل الصفحة */
+}
+
+/* تخصيص روابط تسجيل الخروج */
+a#logout-link {
+    bottom: 20px;  /* وضع الرابط الثاني أسفل الأول بمسافة */
+}
+/* تنسيق الروابط الإدارية */
+.admin-links {
+    position: absolute;  /* تثبيت الروابط في مكان محدد */
+    top: 20px;           /* ضبط المسافة من أعلى الصفحة */
+    left: 20px;          /* ضبط المسافة من اليسار */
+    display: flex;       /* وضع الروابط جنبًا إلى جنب */
+    gap: 10px;           /* المسافة بين الروابط */
+}
+
+/* تنسيق الرابطين */
+.admin-link, .add-course-button {
+    font-size: 16px;
+    color: #0f0f0f;   /* لون النص */
+    text-decoration: none;  /* إزالة الخط تحت الرابط */
+    background-color: #dfeef3; /* خلفية خفيفة */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف حول الرابط */
+    margin-bottom: 10px;  /* مسافة بين الرابط والآخر */
+}
+
+.admin-link:hover, .add-course-button:hover {
+    background-color: #627e92;   /* تغيير لون الخلفية عند التمرير */
+    color: white;
+}
+/*تسجيل الدخول /*
+/* تنسيق الحاوية الأساسية للنموذج */
+form{
+    max-width: 400px;           /* عرض النموذج */
+    margin: 50px auto;           /* وضع النموذج في منتصف الصفحة */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.299);  /* أزرق بشفافية 60% */    /* لون خلفية للنموذج */
+    border-radius: 8px;          /* حواف دائرية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+    text-align: left;            /* محاذاة النصوص لليسار */
+    margin-top: 50px;   
+}
+
+/* تنسيق تسميات الحقول */
+.form-label {
+    font-size: 18px;             /* حجم النص */
+    color: #080808;              /* لون النص */
+    display: block;              /* جعل التسمية تأخذ عرض السطر بالكامل */
+    margin-bottom: 8px;
+    text-align: right; 
+    margin-right: 8px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column; /* لجعل كل عنصر في سطر مستقل */
+    gap: 10px; /* المسافة بين الخيارات */
+}
+
+.radio-option {
+    display: flex;
+    align-items: center; /* لجعل النص في نفس مستوى زر الاختيار */
+    gap: 5px; /* مسافة صغيرة بين input و label */
+}
+
+/* تنسيق حقول الإدخال */
+.form-input {
+    width: 100%;                 /* عرض كامل للمدخلات */
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #cccccc;   /* إطار رمادي */
+    border-radius: 5px;          /* حواف دائرية */
+    box-sizing: border-box;      /* يضمن عدم تجاوز المدخلات لعرض الحاوية */
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #536f82;       /* تغيير لون الإطار عند التفاعل */
+    outline: none;
+}
+
+/* تنسيق زر الإرسال */
+.submit-btn {
+    width: 100%;                 /* عرض الزر بالكامل */
+    padding: 12px;
+    font-size: 18px;
+    color: #2c3e50;
+    background-color: #dfeef3;   /* لون الخلفية */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #dfeef3;   /* تغيير لون الخلفية عند التمرير */
+}
+/* تنسيق الصورة أعلى العنوان */
+.login-logo {
+    display: block; /* عرض الصورة كسطر */
+    margin: 20px auto 10px; /* تباعد أعلى وأسفل وإزاحة الصورة للمنتصف */
+    max-width:150px; /* تحديد عرض الصورة */
+    height: auto; /* المحافظة على نسبة الأبعاد */
+    top : 20px;
+    margin-top: 50px; 
+}
+
+/* حاوية الرسائل */
+.flash-popup-container {
+    position: fixed;
+    top: 2px;
+    left: 50%;
+    transform:center;
+    z-index: 9999;
+    width: 300px;
+    max-width: 90%;
+}
+
+/* تنسيق الرسائل الفلاشية */
+.flash-popup {
+    color:  #2c3e50;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 30px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 4px 8px #dfeef3(0, 0, 0, 0.1);
+    opacity: 0;
+    animation: slide-in 0.5s forwards, fade-out 3s 2s forwards;
+}
+
+/* تأثير الحركة عند الظهور */
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* تأثير التلاشي */
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* رسائل النجاح */
+.flash-popup.success {
+    background-color: #dfeef3; /* لون أخضر للنجاح */
+}
+
+/* رسائل الخطأ */
+.flash-popup.error {
+    background-color:  #dfeef3; /* لون أحمر للخطأ */
+}
+/* تنسيق عنوان الصفحة */
+.page-title {
+    text-align: center;              /* محاذاة العنوان في الوسط */
+    font-size: 24px;                 /* حجم الخط */
+    margin-bottom: 20px;             /* مسافة أسفل العنوان */
+}
+
+/* تنسيق النموذج */
+.add-course-form {
+    max-width: 600px;                /* عرض النموذج */
+    margin: 80px auto;               /* وضع النموذج في منتصف الصفحة مع دفعه أسفل */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.299); /* خلفية للنموذج */
+    border-radius: 10px;             /* حواف دائرية */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+    text-align: left;                /* محاذاة النصوص لليسار */
+}
+
+/* تنسيق المدخلات (input, textarea) */
+.form-label {
+    font-size: 16px;                 /* حجم خط التسمية */
+    margin-bottom: 5px;              /* مسافة أسفل التسمية */
+    display: block;                  /* جعل التسمية تظهر في سطر منفصل */
+}
+
+.form-input, .form-textarea {
+    width: 100%;                     /* جعل الحقول تأخذ كامل العرض */
+    padding: 10px;                   /* مساحة داخل الحقل */
+    border: 1px solid #ccc;          /* حدود الحقل */
+    border-radius: 5px;              /* حواف دائرية */
+    margin-bottom: 15px;              /* مسافة أسفل الحقل */
+    font-size: 16px;                 /* حجم الخط داخل الحقل */
+}
+
+/* تنسيق النصوص في textarea */
+.form-textarea {
+    height: 150px;                   /* ارتفاع أكبر لـ textarea */
+    resize: vertical;                /* يسمح بتغيير حجم textarea عمودياً */
+}
+/*مشاريع*/
+/*تفاصيل الماده -مشروع*/
+.add-project-btn {
+    display: inline-block;
+    background-color:   #dfeef3;
+    color:   #2c3e50;;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.add-project-btn:hover {
+    background-color: #2c3e50;
+    color: #dfeef3;
+}
+.course-title {
+    margin-top: 50px; 
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: right; /* محاذاة العنوان إلى اليمين */
+    flex-direction: column;
+    align-items: flex-end; /* محاذاة العناصر إلى اليمين */
+    padding-right: 20px;
+}
+
+.course-description {
+    font-size: 18px;
+    color: #e4e0e0;
+    margin-bottom: 20px;
+    text-align: right; /* محاذاة الوصف إلى اليمين */
+    flex-direction: column;
+    align-items: flex-end; /* محاذاة العناصر إلى اليمين */
+    padding-right: 20px;
+   
+}
+
+.projects-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px; 
+    text-align: right; /* محاذاة العنوان إلى اليمين */
+    padding-right: 20px;
+}
+
+ .projects-list {
+        font-size: 32px;
+        color: #040f1a;
+        font-weight: bold;
+        float: right;            /* وضع العنصر في أقصى اليمين */
+        margin-right: 10px;      /* إضافة مسافة من الجهة اليمنى */
+        margin-top: 5px; 
+        display: block;          /* التأكد من أن العناصر مرتبة عموديًا */
+        clear: both;             /* منع العناصر من الالتفاف حول بعضها */
+        border: 1px solid #13110d;
+        background-color: #eff4f8;
+    }
+    .projects-list :hover{
+        color: inherit;
+    }  
+
+.project-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    width: 90%;
+    flex-direction: column;
+    align-items: flex-end; /* محاذاة العناصر إلى اليمين */
+    padding-right: 20px;
+    text-align: right;
+    
+}
+
+.project-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #111213;
+    display: block;
+    text-align: right; /* محاذاة اسم المشروع إلى اليمين */
+}
+
+.project-description {
+    font-size: 1rem;
+    color: #070707;
+    text-align: right; /* محاذاة وصف المشروع إلى اليمين */
+}
+
+/* تنسيق الحاوية الخاصة بالصور */
+.project-images {
+    display: flex;
+    flex-wrap: wrap; /* يجعل الصور تتنقل إلى الصفوف التالية إذا كانت تتجاوز العرض */
+    gap: 10px; /* تباعد بين الصور */
+    margin-top: 10px;
+}
+
+/* تنسيق كل صورة */
+.project-image {
+    width: 150px; /* تحديد عرض الصورة */
+    height: 150px; /* تحديد ارتفاع الصورة */
+    object-fit: cover; /* لتغطية الصورة في الحجم المحدد */
+    border-radius: 5px; /* إضافة حواف دائرية للصورة */
+    transition: transform 0.3s ease; /* تأثير تحريك عند التمرير على الصورة */
+}
+
+/* إضافة تأثير تحريك عند التمرير على الصورة */
+.project-image:hover {
+    transform: scale(1.1); /* تكبير الصورة عند التمرير */
+}
+
+.back-to-courses-link {
+    position: fixed;       /* تثبيت العنصر في مكان معين */
+    bottom: 10px;          /* مسافة من أسفل الصفحة */
+    left: 10px;            /* مسافة من يسار الصفحة */
+    font-size: 18px;       /* حجم الخط */
+    color: #2c3e50;        /* لون النص */
+    text-decoration: none; /* إزالة التسطير من الرابط */
+    background-color: #dfeef3; /* خلفية خفيفة */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    
+    
+}
+
+.back-to-courses-link:hover {
+   background-color: #234d69;   
+   color: #e0d5d5;     /* لون عند التمرير على الرابط */
+}
+/* تنسيق النموذج */
+.add-student-form {
+    max-width: 400px;                 /* عرض النموذج */
+    margin: 100px auto;               /* وسط الصفحة مع مساحة من الأعلى */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.299);     /* خلفية فاتحة */
+    border-radius: 8px;               /* حواف دائرية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+}
+
+/* تنسيق تسميات الحقول */
+.form-label {
+    display: block;
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+/* تنسيق حقول الإدخال */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* تنسيق زر الإرسال */
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color:  #dfeef3;   /* لون أزرق للزر */
+    color: #0d0d0e;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #627e92;       /* لون أغمق عند التمرير */
+}
+
+/* تنسيق رابط العودة */
+.back-link {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: #2c3e50;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+.delete {
+    all: unset; /* هذا يحذف أي تنسيق عام يتم تطبيقه على الأزرار */
+    margin-right:300px; /* وضعه على اليسار */
+
+}
+
+/* تنسيق خاص للزر حذف داخل النموذج */
+.delete-btn {
+    all: unset; /* هذا يحذف أي تنسيق عام يتم تطبيقه على الأزرار */
+    background-color: #dfeef3 !important;  /* اللون الرمادي */
+    color: #2c3e50!important;  /* النص باللون الأبيض */
+    padding: 6px 12px !important;  /* تقليل حجم الحواف */
+    font-size: 14px !important;  /* تقليل حجم الخط */
+    cursor: pointer !important;  /* تغيير شكل المؤشر */
+    border-radius: 5px !important;  /* جعل الزر ذو حواف دائرية */
+    transition: background-color 0.3s ease !important;  /* تأثير التغير عند المرور بالماوس */
+    display: inline-block; /* جعل الزر في صف واحد */
+    margin-right:300px; /* وضعه على اليسار */
+}
+
+/* تأثير عند مرور الماوس على الزر */
+.delete-btn:hover {
+    background-color: #c0392b !important;  /* تغيير اللون عند التمرير */
+}

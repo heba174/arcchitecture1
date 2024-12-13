@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- إضافة مكتبة Font Awesome لأيقونة البحث -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>الصفحة الرئيسية</title>
+</head>
+<body>
+    
+    <h1 class="page-title">مقررات قسم الهندسة المعمارية</h1>
+  
+    <!-- شريط البحث -->
+    <div class="earsch-container">
+        <!-- أيقونة البحث -->
+        <i class="fas fa-search search-icon" onclick="toggleSearchBox()"></i>
+        
+        <!-- مربع البحث الذي يظهر عند الضغط على الأيقونة -->
+        <input type="text" id="search-box" class="search-input" placeholder="ابحث عن مادة" oninput="searchFunction()" style="display: none;">
+    </div>
+
+    <!-- قائمة المواد -->
+    <ul class="courses-list" id="coursesList">
+        {% for course in courses %}
+            <li class="course-item"><a href="{{ url_for('course', course_id=course[0]) }}" class="course-link">{{ course[1] }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        // إظهار أو إخفاء مربع البحث عند الضغط على أيقونة البحث
+        function toggleSearchBox() {
+            var searchBox = document.getElementById("search-box");
+            if (searchBox.style.display === "none" || searchBox.style.display === "") {
+                searchBox.style.display = "inline-block"; // إظهار مربع البحث
+                searchBox.focus(); // تركيز المؤشر داخل مربع البحث
+            } else {
+                searchBox.style.display = "none"; // إخفاء مربع البحث
+            }
+        }
+
+        // تنفيذ البحث عند إدخال نص في مربع البحث
+        function searchFunction() {
+            var input = document.getElementById("search-box").value.toLowerCase();
+            var courseItems = document.getElementsByClassName("course-item");
+
+            // التحقق من النص المدخل وإظهار المواد التي تحتوي على النص
+            for (var i = 0; i < courseItems.length; i++) {
+                var courseTitle = courseItems[i].innerText.toLowerCase();
+                if (courseTitle.includes(input)) {
+                    courseItems[i].style.display = "block"; // إظهار العنصر
+                } else {
+                    courseItems[i].style.display = "none"; // إخفاء العنصر
+                }
+            }
+        }
+    </script>
+
+    {% if current_user.is_authenticated and current_user.role == 'admin' %}
+    <!-- زر القائمة المنسدلة للإدمن فقط -->
+    <div class="dropdown">
+        <button class="dropdown-btn">&#9776;</button>
+        <div class="dropdown-content">
+            <a href="{{ url_for('add_course') }}">إدارة المواد</a>
+            <a href="{{ url_for('add_student') }}">إدارة الطلاب</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <br>
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('logout') }}" class="auth-link" id="logout-link">تسجيل الخروج</a>
+    {% else %}
+        <a href="{{ url_for('login') }}" class="auth-link" id="login-link">تسجيل الدخول</a>
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-popup-container">
+            {% for message in messages %}
+                <div class="flash-popup success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

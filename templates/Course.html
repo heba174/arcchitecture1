@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تفاصيل المادة</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h2 class="course-title">{{ course[1] }}</h2> <!-- عرض اسم المادة -->
+    <p class="course-description">{{ course[2] }}</p> <!-- عرض وصف المادة -->
+    
+    <h3 class="projects-title">المشاريع</h3>
+    <ul class="projects-list">
+        {% for project_id, project in projects.items() %}
+        <li class="project-item">
+            <span class="project-user">{{ project.username }}</span>
+            <strong class="project-name">{{ project.name }}</strong>
+            <span class="project-description">{{ project.description }}</span>
+    
+            {% if project.images %}
+                <div class="project-images">
+                    {% for image in project.images %}
+                        <img src="{{ url_for('static', filename='images/' + image) }}" alt="Image" class="project-image">
+                    {% endfor %}
+                </div>
+            {% endif %}
+    
+            {% if current_user.is_authenticated and current_user.id == project.user_id %}
+            <form method="POST" class="delete" action="{{ url_for('delete_project', project_id=project_id) }}">
+                <button type="submit" class="delete-btn">حذف</button>
+            </form>
+        {% endif %}
+        
+        
+        </li>
+    {% endfor %}
+    
+    </ul>
+    
+
+    {% if current_user.is_authenticated and current_user.role == 'student' %}
+        <a class="button add-project-btn" href="{{ url_for('add_project', course_id=course[0]) }}">إضافة مشروع</a>
+    {% endif %}
+    
+    <a href="{{ url_for('index') }}" class="back-to-courses-link">الرجوع إلى قائمة المواد</a>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-popup-container">
+            {% for message in messages %}
+                <div class="flash-popup success">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>
